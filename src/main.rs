@@ -14,7 +14,6 @@ fn main() {
     println!("The secret number is: {secret_number}");
     println!("Enter a number between 1 and 100");
 
-    // a variable to store the user's guess.
     let mut guess = String::new();
 
     /*
@@ -27,7 +26,7 @@ fn main() {
     println!("You entered: {}", guess);
 
     /*
-    Rust allows us to re-use the previous value of guess with something called Shadowing
+    Rust allows to re-use the previous variable "guess" with something called Shadowing.
     The `trim()` method is used to remove any leading or trailing whitespace from a string.
     The parse() method is used to convert the string to a u32 data type.
     Ordering::Less, Ordering::Greater, and Ordering::Equal are enums that represent the three possible outcomes of a comparison.
