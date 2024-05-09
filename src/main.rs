@@ -1,6 +1,8 @@
 use rand::Rng;
 use std::cmp::Ordering;
 use std::io;
+use std::thread;
+use std::time::Duration;
 
 fn main() {
     println!("Guess the number!");
@@ -43,6 +45,7 @@ fn main() {
             Ordering::Greater => println!("Too big!"),
             Ordering::Equal => {
                 println!("You win!");
+                thread::sleep(Duration::from_secs(2));
                 break;
             }
         }
