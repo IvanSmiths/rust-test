@@ -4,6 +4,7 @@ use std::io;
 
 fn main() {
     println!("Guess the number!");
+
     /*
     Generate a random number between 1 and 100 using the `rand` crate.
     The two dots ".." denote a range that includes the start value but excludes the end value.
@@ -12,30 +13,38 @@ fn main() {
     let secret_number: u32 = rand::thread_rng().gen_range(1..=100);
 
     println!("The secret number is: {secret_number}");
-    println!("Enter a number between 1 and 100");
 
-    let mut guess = String::new();
+    // The loop will continue to run until the user enters a valid number.
+    loop {
+        println!("Enter a number between 1 and 100");
 
-    /*
-    Read the user's input from the console. If the user enters an invalid input,
-    the program will continue to prompt the user for input until a valid input is entered.
-    */
-    io::stdin()
-        .read_line(&mut guess)
-        .expect("Failed to read line");
-    println!("You entered: {}", guess);
+        let mut guess = String::new();
 
-    /*
-    Rust allows to re-use the previous variable "guess" with something called Shadowing.
-    The `trim()` method is used to remove any leading or trailing whitespace from a string.
-    The parse() method is used to convert the string to a u32 data type.
-    Ordering::Less, Ordering::Greater, and Ordering::Equal are enums that represent the three possible outcomes of a comparison.
-    */
-    let guess: u32 = guess.trim().parse().expect("Please type a number!");
+        /*
+        Read the user's input from the console. If the user enters an invalid input,
+        the program will continue to prompt the user for input until a valid input is entered.
+        */
+        io::stdin()
+            .read_line(&mut guess)
+            .expect("Failed to read line");
+        println!("You entered: {}", guess);
 
-    match guess.cmp(&secret_number) {
-        Ordering::Less => println!("Too small!"),
-        Ordering::Greater => println!("Too big!"),
-        Ordering::Equal => println!("You win!"),
+        /*
+        Rust allows to re-use the previous variable "guess" with something called Shadowing.
+        The `trim()` method is used to remove any leading or trailing whitespace from a string.
+        The parse() method is used to convert the string to a u32 data type.
+        Ordering::Less, Ordering::Greater, and Ordering::Equal are enums that represent the three possible outcomes of a comparison.
+        */
+        let guess: u32 = guess.trim().parse().expect("Please type a number!");
+
+        println!("Please enter a number between 1 and 100");
+        match guess.cmp(&secret_number) {
+            Ordering::Less => println!("Too small!"),
+            Ordering::Greater => println!("Too big!"),
+            Ordering::Equal => {
+                println!("You win!");
+                break;
+            }
+        }
     }
 }
