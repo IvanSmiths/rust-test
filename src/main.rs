@@ -12,7 +12,7 @@ fn main() {
     The two dots ".." denote a range that includes the start value but excludes the end value.
     The equal sign "=" after the two dots indicates that the range is inclusive, meaning it includes both the start and the end values.
     */
-    let secret_number: u32 = rand::thread_rng().gen_range(1..=100);
+    let secret_number: u8 = rand::thread_rng().gen_range(1..=100);
 
     println!("The secret number is: {secret_number}");
 
@@ -34,10 +34,10 @@ fn main() {
         /*
         Rust allows to re-use the previous variable "guess" with something called Shadowing.
         The `trim()` method is used to remove any leading or trailing whitespace from a string.
-        The parse() method is used to convert the string to a u32 data type.
+        The parse() method is used to convert the string to a u8 data type.
         Ordering::Less, Ordering::Greater, and Ordering::Equal are enums that represent the three possible outcomes of a comparison.
         */
-        let guess: u32 = guess.trim().parse().expect("Please type a number!");
+        let guess: u8 = guess.trim().parse().expect("Please type a number!");
 
         println!("Please enter a number between 1 and 100");
         match guess.cmp(&secret_number) {
